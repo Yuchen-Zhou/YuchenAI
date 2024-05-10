@@ -1,5 +1,11 @@
 <template>
-  <div>
-    <NuxtWelcome />
-  </div>
+  <NuxtPage />
 </template>
+
+<script setup>
+  useHead({
+    title: 'YuchenAI',
+  })
+
+  
+</script>
