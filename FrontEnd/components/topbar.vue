@@ -5,26 +5,41 @@
       :ellipsis="false"
     >
       <el-menu-item index="0">
-        <img src="@/assets/logo/logo1.png" width="150px" height="200px">
+        <NuxtLink to="/">
+          <img src="@/assets/logo/logo1.png" width="150px" height="200px">
+        </NuxtLink>
       </el-menu-item>
 
+
+
       <div class="flex-grow" />
-      <NuxtLink to="/login">
-        <el-menu-item index="1">
-          <template #title>登录/注册</template>
-        </el-menu-item>
-      </NuxtLink>
-  
+      <template v-if="!showLogin">
+        <NuxtLink to="/users/login">
+          <el-menu-item index="2" >
+            <template #title>登录</template>
+          </el-menu-item>
+        </NuxtLink>
+        <NuxtLink to="/users/register">
+          <el-menu-item index="3">
+            <template #title>注册</template>
+          </el-menu-item>
+        </NuxtLink>
+      </template>
       
     </el-menu>
 </template>
   
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
+const showLogin = ref(false);
+const router = useRouter();
 
 onMounted(() => {
-  
+
+  if (router.currentRoute.value.href !== '/') {
+    showLogin.value = true;
+  }
 });
+
 </script>
 
 <style>
