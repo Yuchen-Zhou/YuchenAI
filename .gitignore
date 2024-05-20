@@ -16,4 +16,5 @@ __pycache__
 /FrontEnd/Dockerfile
 /BackEnd/configs/*
 /BackEnd/static/*
+/Postgresql
 
