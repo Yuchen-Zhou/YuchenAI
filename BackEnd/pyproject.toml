@@ -1,0 +1,15 @@
+[build-system]
+requires = [ "hatchling" ]
+build-backend = "hatchling.build"
+
+[project]
+name = "YuchenAI"
+version = "0.0.1"
+
+dependencies = [
+    "fastapi",
+    "uvicorn"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = [ "*" ]
