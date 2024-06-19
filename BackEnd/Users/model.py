@@ -1,11 +1,10 @@
 import uuid, hashlib, datetime
 from typing import List
 
-
 from sqlalchemy import Column, String, ForeignKey, Integer, DateTime, Boolean, Text, UUID
 from sqlalchemy.orm import relationship, Mapped
 
-from Postgresql import BaseModel
+from Database import BaseModel
 
 class Users(BaseModel):
     __tablename__ = "users"

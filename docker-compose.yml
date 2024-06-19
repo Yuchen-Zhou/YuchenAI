@@ -1,38 +1,37 @@
-version: '0.0.1'
+version: '3'
 
 services:
   backend:
     image: yuchenai_backend:0.0.1
     ports:
-      - ${BACKEND_PORT}:8000
+      - ${BACKEND_PORT}:10800
     volumes:
       - ./BackEnd:/BackEnd
     env_file:
       - ./.env
     environment:
       - TZ=${LOCAL_TZ}
-    restart: always
     depends_on:
       - postgresql
       - redis
     tty: true
     working_dir: /BackEnd
 
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile.frontend
-    ports:
-      - ${FRONTEND_PORT}:3000
-    volumes:
-      - ./FrontEnd:/app
-    env_file:
-      - ./.env
-    environment:
-      - TZ=${LOCAL_TZ}
-    restart: always
-    tty: true
-    working_dir: /app
+#  frontend:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.frontend
+#    ports:
+#      - ${FRONTEND_PORT}:10900
+#    volumes:
+#      - ./FrontEnd:/app
+#    env_file:
+#      - ./.env
+#    environment:
+#      - TZ=${LOCAL_TZ}
+#    restart: always
+#    tty: true
+#    working_dir: /app
 
   postgresql:
     image: postgres:16.2
@@ -45,19 +44,17 @@ services:
       - POSTGRES_USER=${ROOT}
       - POSTGRES_PASSWORD=${PASSWORD}
       - POSTGRES_DB=${POSTGRESQL_DATABASE}
-    restart: always
 
   redis:
     image: redis:7.2.0
     ports:
       - ${REDIS_PORT}:6379
     command: redis-server
-    restart: always
 
-  nginx:
-    image: nginx:1.25
-    ports:
-      - ${FRONTEND_PORT}:80
-    volumes:
-      - ./Nginx/nginx.conf:/etc/nginx/nginx.conf
-    restart: always
+#  nginx:
+#    image: nginx:1.25
+#    ports:
+#      - ${FRONTEND_PORT}:80
+#    volumes:
+#      - ./Nginx/nginx.conf:/etc/nginx/nginx.conf
+#    restart: always

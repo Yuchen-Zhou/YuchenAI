@@ -6,24 +6,17 @@
     <el-main>
       <carousel />
     </el-main>
+  
   </div>
 </template>
 
-<script setup>
-import { onMounted, ref } from 'vue';
-const response = ref(null);
+<script lang="ts" setup>
 
 onMounted(async () => {
-  try {
-    const res = await fetch('http://192.168.124.4:8000/hello', { method: 'GET' });
-    if (res.ok) {
-      response.value = await res.json();
-      console.log(response.value);
-    } else {
-      console.error('Fetch error: ', res.status);
-    }
-  } catch (error) {
-    console.error('Fetch error: ', error);
-  }
+  
 });
 </script>
+
+<style lang="scss" scoped>
+
+</style>
