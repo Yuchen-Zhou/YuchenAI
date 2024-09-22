@@ -51,6 +51,18 @@ services:
       - ${REDIS_PORT}:6379
     command: redis-server
 
+  mongodb:
+    image: mongo:6.0.10
+    ports:
+      - ${MONGODB_PORT}:27017
+    volumes:
+      - ./MongoDB/data:/data/db
+    environment:
+      - TZ=${LOCAL_TZ}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+
 #  nginx:
 #    image: nginx:1.25
 #    ports:
